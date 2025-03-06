@@ -1,0 +1,68 @@
+import java.util.*;
+class Tree{
+    int value;
+    
+    Tree left,right;
+    Tree(int value){
+    this.value =value;
+    left=right=null;
+    }
+}    
+
+
+public class Main {
+public static void main(String[] args) {
+            
+            Scanner sc=new Scanner(System.in);
+              int n=sc.nextInt();
+              Tree root=null;
+              for(int i=0;i<n;i++){
+                int b=sc.nextInt();
+                    root=insert(root,b);
+                }
+            inorder(root);
+            System.out.println();
+            preorder(root);
+            System.out.println();
+            postorder(root);
+ }
+public static Tree insert(Tree root,int val){
+    if(root==null){
+        return new Tree(val);
+    }
+    if(root.value>val){
+        root.left=insert(root.left,val);
+    }
+    else
+        {
+            root.right=insert(root.right,val);
+        }
+    return root;    
+}
+public static void inorder(Tree root){
+    if(root==null){
+        return ;
+    }
+    inorder(root.left);
+    System.out.print(root.value+" ");
+
+    inorder(root.right);
+}
+public static void preorder(Tree root){
+    if(root==null){
+        return;
+    }
+    System.out.print(root.value+" ");
+    preorder(root.left);
+    preorder(root.right);
+}
+public static void postorder(Tree root){
+    if(root==null){
+        return;
+    }
+    postorder(root.left);
+    postorder(root.right);
+    System.out.print(root.value+" ");
+    
+}
+}
